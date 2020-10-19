@@ -7,6 +7,7 @@ llr <- function(x,y,z,omega){
 
 compute_f_hat <- function(z,x,y,omega){
   Wz <- make_weight_matrix(z,x,omega)
+  print(Wz)
   X <- make_predictor_matrix(x)
   f_hat = c(1,z) %*% solve(t(X) %*% Wz %*% X) %*% t(X) %*% Wz %*% y
   return(f_hat)
@@ -35,3 +36,8 @@ make_weight_matrix <- function(z,x,omega){
   return(Wz)
 }
 
+n=15
+x=rnorm(n)
+y=rnorm(x+rnorm(n))
+z=seq(-1,1,length.out=100)
+llr(x,y,z,1)
